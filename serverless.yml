@@ -1,0 +1,14 @@
+service: service-example
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+functions:
+  functionExample:
+    handler: src/functions/functionExample.init
+
+    events:
+      - http:
+          path: Example
+          method: get
