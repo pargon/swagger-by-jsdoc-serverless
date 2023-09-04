@@ -1,0 +1,63 @@
+{
+  "name": "swagger-by-jsdoc-serverless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "js-yaml": "^4.1.0",
+    "jsdoc-api": "^8.0.0",
+    "pluralize": "^8.0.0",
+    "prettier": "^3.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0"
+  },
+  "eslintIgnore": [
+    "*.test.js"
+  ],
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "linebreak-style": 0,
+      "max-len": [
+        "error",
+        {
+          "ignoreComments": true,
+          "ignoreTrailingComments": true
+        }
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ]
+    }
+  }
+}
