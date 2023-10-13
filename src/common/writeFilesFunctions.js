@@ -4,10 +4,10 @@ const { getJsonFunction } = require("./getJsonFunction");
 const writeFilesFunctions = async (
   functions,
   target,
-  parametersPath,
-  requestBodiesPath,
-  schemasPath,
-  responsesPath,
+  paramPath,
+  reqBodiesPath,
+  filePath,
+  respPath,
   overwrite
 ) => {
   if (!fs.existsSync(target)) {
@@ -18,17 +18,16 @@ const writeFilesFunctions = async (
     if (!fs.existsSync(file) || overwrite) {
       const jsonFunction = getJsonFunction(
         func,
-        parametersPath,
-        requestBodiesPath,
-        schemasPath,
-        responsesPath
+        paramPath,
+        reqBodiesPath,
+        filePath,
+        respPath
       );
       const jsonStr = `module.exports = ${JSON.stringify(jsonFunction)}`;
 
       await fs.promises.writeFile(file, jsonStr, (err) => {
-        if (err) {
-          throw new Error(err);
-        }
+        if (err) throw new Error(err);
+
         return null;
         // file written successfully
       });
