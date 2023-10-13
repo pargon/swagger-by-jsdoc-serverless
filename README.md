@@ -2,9 +2,9 @@
 Read serverless and jsdoc to make a swagger json
 
 ## install from Bitbucket
-Find `Clone` button on source repository, later option https like this `git clone https://gnparra@bitbucket.org/workspace/repo.git##branch`. After, install by npm like this:
+Find `Clone` button on source repository, later option https like this `git clone https://user@bitbucket.org/workspace/repo.git##branch`. After, install by npm like this:
 ```sh
-npm i https://gnparra@bitbucket.org/ws/repo.git##branch
+npm i https://user@bitbucket.org/ws/repo.git##branch
 ```
 and you install from bitbucket where `ws` is the workspaces and `repo` is repository to add. At the end we have the `branch` like `main` or `develop` for example. 
 
