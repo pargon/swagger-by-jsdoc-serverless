@@ -53,6 +53,7 @@
   "files": [
     "bin/",
     "lib/",
+    "spec/",
     "package.json",
     ".gitignore",
     "README.MD"
