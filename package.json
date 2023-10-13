@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "eslint": "eslint lib/** --fix",
-    "postinstall": "scripts/update-gitignore.js"
+    "postinstall": "node scripts/update-gitignore.js"
   },
   "keywords": [
     "serverless",
