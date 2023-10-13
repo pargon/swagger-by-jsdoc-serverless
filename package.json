@@ -49,9 +49,15 @@
   "author": "Gonzalo Parra",
   "license": "ISC",
   "files": [
+<<<<<<< HEAD
     "scripts/",
     "spec/",
     "src/",
+=======
+    "bin/",
+    "lib/",
+    "spec/",
+>>>>>>> 2c0aebdde4416b03cb8537a437ca8e3bd42fcbca
     "package.json",
     ".gitignore",
     "README.MD"
