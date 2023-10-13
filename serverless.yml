@@ -12,5 +12,3 @@ functions:
       - http:
           path: Example
           method: get
-plugins:
-  - swagger-by-jsdoc-serverless

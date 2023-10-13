@@ -44,7 +44,7 @@ const getParamsManual = (paramsManual) => {
   return parmsFormatted;
 };
 
-const getParamsListado = (parametersPath) => {
+const getParamsListado = (paramPath) => {
   let strParm = "limite";
   let jsonFunction = {
     name: strParm,
@@ -54,7 +54,7 @@ const getParamsListado = (parametersPath) => {
     example: 10,
     schema: { type: "integer" }
   };
-  createJsonFile(parametersPath, strParm, jsonFunction, overwrite);
+  createJsonFile(paramPath, strParm, jsonFunction, overwrite);
   const objLimite = { $ref: `#/components/parameters/${strParm}` };
 
   strParm = "paginacion";
@@ -66,7 +66,7 @@ const getParamsListado = (parametersPath) => {
     example: 1,
     schema: { type: "integer" }
   };
-  createJsonFile(parametersPath, strParm, jsonFunction, overwrite);
+  createJsonFile(paramPath, strParm, jsonFunction, overwrite);
   const objPag = { $ref: `#/components/parameters/${strParm}` };
 
   return [objLimite, objPag];
@@ -87,17 +87,17 @@ const getHeaderJson = (funcDetail) => {
   };
 };
 
-const getParamsJson = (paramsManual, funcName, parametersPath) => {
-  const parameters1 = getParamsManual(paramsManual, funcName, parametersPath);
+const getParamsJson = (paramsManual, funcName, paramPath) => {
+  const parameters1 = getParamsManual(paramsManual, funcName, paramPath);
   let parameters2 = [];
   // si es listado, agrega query limite y paginacion, además crea archivo si no existe
   if (funcName.includes("Listado"))
-    parameters2 = getParamsListado(parametersPath);
+    parameters2 = getParamsListado(paramPath);
 
   return [...parameters1, ...parameters2];
 };
 
-const getBodySuccess = (pathName, method, schemasPath, responsesPath) => {
+const getBodySuccess = (pathName, method, filePath, respPath) => {
   const fields = pathName.split("/");
   const entity = fields[1];
   const fileName = `${entity}${method}Output`;
@@ -108,7 +108,7 @@ const getBodySuccess = (pathName, method, schemasPath, responsesPath) => {
     type: "object"
   };
   // write file component/schema
-  createJsonFile(schemasPath, schemaName, jsonFunction, overwrite);
+  createJsonFile(filePath, schemaName, jsonFunction, overwrite);
 
   jsonFunction = {
     description: "Respuesta Exitosa",
@@ -119,7 +119,7 @@ const getBodySuccess = (pathName, method, schemasPath, responsesPath) => {
     }
   };
   // write file component/responses
-  createJsonFile(responsesPath, fileName, jsonFunction, overwrite);
+  createJsonFile(respPath, fileName, jsonFunction, overwrite);
 
   return fileName;
 };
@@ -131,8 +131,8 @@ const getBodyRequestByParm = (
   parameters,
   pathName,
   method,
-  schemasPath,
-  requestBodiesPath
+  filePath,
+  reqBodiesPath
 ) => {
   const result = parameters
     .filter((parm) => parm.type === "Object" && !parm.in)
@@ -150,7 +150,7 @@ const getBodyRequestByParm = (
     const schemaName = `${entity}Input`;
 
     // write file component/schema
-    createJsonFile(schemasPath, schemaName, result[0], overwrite);
+    createJsonFile(filePath, schemaName, result[0], overwrite);
     const jsonFunction = {
       description: "Datos de la Entidad",
       content: {
@@ -160,13 +160,13 @@ const getBodyRequestByParm = (
       }
     };
     // write file component/requestBodies
-    createJsonFile(requestBodiesPath, fileName, jsonFunction, overwrite);
+    createJsonFile(reqBodiesPath, fileName, jsonFunction, overwrite);
     obj = { $ref: `#/components/requestBodies/${fileName}` };
   }
   return obj;
 };
 
-const getRequestBody = (pathName, method, schemasPath, requestBodiesPath) => {
+const getRequestBody = (pathName, method, filePath, reqBodiesPath) => {
   const fields = pathName.split("/");
   const entity = fields[1];
   const fileName = `${entity}${method}Input`;
@@ -176,7 +176,7 @@ const getRequestBody = (pathName, method, schemasPath, requestBodiesPath) => {
     description: entity,
     type: "object"
   };
-  createJsonFile(schemasPath, schemaName, jsonFunction);
+  createJsonFile(filePath, schemaName, jsonFunction);
 
   jsonFunction = {
     description: "Datos de la Entidad",
@@ -186,7 +186,7 @@ const getRequestBody = (pathName, method, schemasPath, requestBodiesPath) => {
       }
     }
   };
-  createJsonFile(requestBodiesPath, fileName, jsonFunction);
+  createJsonFile(reqBodiesPath, fileName, jsonFunction);
   const obj = { $ref: `#/components/requestBodies/${fileName}` };
   return obj;
 };

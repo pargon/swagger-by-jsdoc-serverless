@@ -6,7 +6,6 @@
 # Node artifact files
 node_modules/
 dist/
-.serverless/
 
 # Compiled Java class files
 *.class
@@ -48,4 +47,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-*.env
+
+# Basic files
+serverless.yml
+swagger/

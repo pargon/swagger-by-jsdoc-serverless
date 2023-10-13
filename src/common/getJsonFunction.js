@@ -9,10 +9,10 @@ const {
 
 const getJsonFunction = (
   elemFunction,
-  parametersPath,
-  requestBodiesPath,
-  schemasPath,
-  responsesPath
+  paramPath,
+  reqBodiesPath,
+  filePath,
+  respPath
 ) => {
   const key = `/${elemFunction.path}`;
   const funcion = {};
@@ -25,29 +25,29 @@ const getJsonFunction = (
     const allParameters = getParamsJson(
       funcDetail.paramsManual,
       funcDetail.name,
-      parametersPath
+      paramPath
     );
     const parameters = getParmsPathQuery(allParameters);
     let requestBody = getBodyRequestByParm(
       allParameters,
       elemFunction.path,
       subKey,
-      schemasPath,
-      requestBodiesPath
+      filePath,
+      reqBodiesPath
     );
     if (!requestBody && (subKey === "post" || subKey === "patch"))
       requestBody = getRequestBody(
         elemFunction.path,
         subKey,
-        schemasPath,
-        requestBodiesPath
+        filePath,
+        reqBodiesPath
       );
 
     const bodySuccess = getBodySuccess(
       elemFunction.path,
       subKey,
-      schemasPath,
-      responsesPath
+      filePath,
+      respPath
     );
     funcion[key][subKey] = {
       description: headerInfo.description,
