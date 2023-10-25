@@ -91,8 +91,7 @@ const getParamsJson = (paramsManual, funcName, paramPath) => {
   const parameters1 = getParamsManual(paramsManual, funcName, paramPath);
   let parameters2 = [];
   // si es listado, agrega query limite y paginacion, además crea archivo si no existe
-  if (funcName.includes("Listado"))
-    parameters2 = getParamsListado(paramPath);
+  if (funcName.includes("Listado")) parameters2 = getParamsListado(paramPath);
 
   return [...parameters1, ...parameters2];
 };
@@ -125,7 +124,7 @@ const getBodySuccess = (pathName, method, filePath, respPath) => {
 };
 
 const getParmsPathQuery = (parameters) =>
-  parameters.filter((parm) => parm.type.toLowerCase() !== "object");
+  parameters.filter((parm) => parm.type !== "object");
 
 const getBodyRequestByParm = (
   parameters,
@@ -135,7 +134,7 @@ const getBodyRequestByParm = (
   reqBodiesPath
 ) => {
   const result = parameters
-    .filter((parm) => parm.type.toLowerCase() === "object" && !parm.in)
+    .filter((parm) => parm.type === "object" && !parm.in)
     .map((parm) => {
       delete parm.name;
       delete parm.type;
