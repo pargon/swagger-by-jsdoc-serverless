@@ -11,14 +11,14 @@ Run script
 ```sh
 node -r swagger-by-jsdoc-serverless/scripts/init.js
 ```
-After that, update pachage.json/"scripts" manually or run init.js
+After that, update `pachage.json/"scripts"` manually or run init.js
 ```json
 "scripts": {
   "swagger-spec": "node -r swagger-by-jsdoc-serverless/scripts/spec.js",
   "swagger-html": "node -r swagger-by-jsdoc-serverless/scripts/html.js"
 }
 ```  
-Update .gitignore manually or run init.js
+Update `.gitignore` manually or run init.js
 ```sh
 swagger/*/*
 !swagger/components/schemas/
@@ -40,4 +40,4 @@ Run script
 ```sh
 npm run swagger-html
 ```
-and you can find tmp\index.html 
+and you can find `tmp\index.html`
