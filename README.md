@@ -1,14 +1,12 @@
 # swagger-by-jsdoc-serverless
 Read serverless and jsdoc to make a swagger json
 
-## install from Bitbucket
-Find `Clone` button on source repository, later option https like this `git clone https://user@bitbucket.org/workspace/repo.git##branch`. After, install by npm like this:
+## Install
 ```sh
-npm i https://user@bitbucket.org/ws/repo.git##branch
+npm i swagger-by-jsdoc-serverless
 ```
-and you install from bitbucket where `ws` is the workspaces and `repo` is repository to add. At the end we have the `branch` like `main` or `develop` for example. 
 
-## post install
+## Post install
 Add to pachage.json "scripts"
 ```json
 "scripts": {
@@ -18,12 +16,12 @@ Add to pachage.json "scripts"
 }
 ```  
 
-## init
+## Init
 ```sh
 npm run swagger-init
 ```
 
-## spec first
+## Spec first
 Create folders and default shcemas files
 ```sh
 npm run swagger-spec
@@ -33,7 +31,7 @@ Update schema files in `\swagger\components\schemas` and now run again
 npm run swagger-spec
 ```
 
-## make html
+## Make html
 ```sh
 npm run swagger-html
 ```

@@ -1,7 +1,13 @@
 const config = require("../src/config");
-const { copyDefaultSpec } = require("../src/common");
+const {
+  copyDefaultSpec,
+  updateGitignore,
+  updatePackJson
+} = require("../src/common");
 
 async function eject() {
+  await updateGitignore();
+  await updatePackJson();
   config.eject();
   await copyDefaultSpec(
     process.env.SWAGGERSPECDEFTPATH,
