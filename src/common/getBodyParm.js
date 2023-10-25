@@ -10,7 +10,7 @@ const getParamsManual = (paramsManual) => {
 
     paramsManual.forEach((parm) => {
       const nameArray = parm.name.split(".");
-      if (parm.type.names[0] === "Object") {
+      if (parm.type.names[0].toLowerCase() === "object") {
         // init nested parm
         parmNested = {
           name: nameArray[0],
@@ -125,7 +125,7 @@ const getBodySuccess = (pathName, method, filePath, respPath) => {
 };
 
 const getParmsPathQuery = (parameters) =>
-  parameters.filter((parm) => parm.type !== "Object");
+  parameters.filter((parm) => parm.type.toLowerCase() !== "object");
 
 const getBodyRequestByParm = (
   parameters,
@@ -135,7 +135,7 @@ const getBodyRequestByParm = (
   reqBodiesPath
 ) => {
   const result = parameters
-    .filter((parm) => parm.type === "Object" && !parm.in)
+    .filter((parm) => parm.type.toLowerCase() === "object" && !parm.in)
     .map((parm) => {
       delete parm.name;
       delete parm.type;
