@@ -7,7 +7,7 @@ npm i swagger-by-jsdoc-serverless
 ```
 
 ## Post install
-Run init
+Run script
 ```sh
 node -r swagger-by-jsdoc-serverless/scripts/init.js
 ```
@@ -36,6 +36,8 @@ npm run swagger-spec
 ```
 
 ## Make html
+Run script
 ```sh
 npm run swagger-html
 ```
+and you can find tmp\index.html 
