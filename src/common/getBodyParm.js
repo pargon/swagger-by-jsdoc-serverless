@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign, no-restricted-syntax */
 const { createJsonFile } = require("./createJsonFile");
 
-const overwrite = false;
+const overwrite = true;
 
 const getParamsManual = (paramsManual) => {
   const parmsFormatted = [];

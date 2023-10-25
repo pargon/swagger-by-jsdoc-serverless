@@ -6,6 +6,8 @@ const { getJsonFunction } = require("./getJsonFunction");
 const { writeFilesFunctions } = require("./writeFilesFunctions");
 const { writeHtmlFromJson } = require("./writeHtmlFromJson");
 const { writeIndex } = require("./writeIndex");
+const { updateGitignore } = require("./updateGitignore");
+const { updatePackJson } = require("./updatePackJson");
 
 const writeFile = async (jsonStr, path) => {
   await fs.writeFile(path, jsonStr, "utf8", (err) => {
@@ -21,5 +23,7 @@ module.exports = {
   writeFilesFunctions,
   writeHtmlFromJson,
   writeIndex,
+  updateGitignore,
+  updatePackJson,
   writeFile
 };

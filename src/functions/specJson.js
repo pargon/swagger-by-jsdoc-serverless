@@ -5,7 +5,7 @@ const {
   writeIndex
 } = require("../common");
 
-async function specJson(fileDelete) {
+async function specJson(overwrite) {
   const functions = await getFunctionsFromServerless(
     process.env.SWAGGERSRVLESSPATH
   );
@@ -18,7 +18,7 @@ async function specJson(fileDelete) {
     process.env.SWAGGERREQPATH,
     process.env.SWAGGERSCHEMAPATH,
     process.env.SWAGGERRESPPATH,
-    fileDelete
+    overwrite
   );
   await writeIndex(process.env.SWAGGERFUNCPATH);
   await writeIndex(process.env.SWAGGERPARAMPATH);
