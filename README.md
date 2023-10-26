@@ -24,6 +24,11 @@ swagger/*/*
 !swagger/components/schemas/
 tmp/*.json
 ```
+The next folders will be created
+```sh
+./swagger
+./tmp
+```
 
 ## Spec first
 Create folders and default shcemas files
