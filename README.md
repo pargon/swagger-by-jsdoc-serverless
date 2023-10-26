@@ -7,18 +7,22 @@ npm i swagger-by-jsdoc-serverless
 ```
 
 ## Post install
-Add to pachage.json "scripts"
+Run script
+```sh
+node -r swagger-by-jsdoc-serverless/scripts/init.js
+```
+After that, update `pachage.json/"scripts"` manually or run init.js
 ```json
 "scripts": {
-  "swagger-init": "node -r swagger-by-jsdoc-serverless/scripts/init.js",
   "swagger-spec": "node -r swagger-by-jsdoc-serverless/scripts/spec.js",
   "swagger-html": "node -r swagger-by-jsdoc-serverless/scripts/html.js"
 }
 ```  
-
-## Init
+Update `.gitignore` manually or run init.js
 ```sh
-npm run swagger-init
+swagger/*/*
+!swagger/components/schemas/
+tmp/*.json
 ```
 
 ## Spec first
@@ -32,6 +36,8 @@ npm run swagger-spec
 ```
 
 ## Make html
+Run script
 ```sh
 npm run swagger-html
 ```
+and you can find `tmp\index.html`
