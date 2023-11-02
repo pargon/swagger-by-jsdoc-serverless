@@ -107,7 +107,7 @@ const getBodySuccess = (pathName, method, filePath, respPath) => {
     type: "object"
   };
   // write file component/schema
-  createJsonFile(filePath, schemaName, jsonFunction, overwrite);
+  createJsonFile(filePath, schemaName, jsonFunction);
 
   jsonFunction = {
     description: "Respuesta Exitosa",
