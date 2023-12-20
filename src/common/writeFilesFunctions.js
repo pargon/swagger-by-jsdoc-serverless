@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop, no-restricted-syntax, guard-for-in */
 const fs = require("fs");
 const { getJsonFunction } = require("./getJsonFunction");
 
@@ -6,21 +7,21 @@ const writeFilesFunctions = async (
   target,
   paramPath,
   reqBodiesPath,
-  filePath,
+  schemaPath,
   respPath,
   overwrite
 ) => {
-  if (!fs.existsSync(target)) {
-    fs.mkdirSync(target, { recursive: true });
-  }
-  await functions.forEach(async (func) => {
+  if (!fs.existsSync(target)) fs.mkdirSync(target, { recursive: true });
+
+  for (let index = 0; index < functions.length; index++) {
+    const func = functions[index];
     const file = `${target}/${func.detail[0].name}.js`;
     if (!fs.existsSync(file) || overwrite) {
-      const jsonFunction = getJsonFunction(
+      const jsonFunction = await getJsonFunction(
         func,
         paramPath,
         reqBodiesPath,
-        filePath,
+        schemaPath,
         respPath
       );
       const jsonStr = `module.exports = ${JSON.stringify(jsonFunction)}`;
@@ -32,7 +33,7 @@ const writeFilesFunctions = async (
         // file written successfully
       });
     }
-  });
+  }
 };
 
 module.exports = {

@@ -1,5 +1,4 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-await-in-loop */
+/* eslint-disable no-await-in-loop, no-restricted-syntax */
 const fs = require("fs").promises;
 const jsdoc = require("jsdoc-api");
 
@@ -15,7 +14,9 @@ async function getMetadataFromJSDoc(handler) {
         if (obj.description) metadata.description = obj.description;
         if (obj.params) metadata.params = obj.params;
         if (obj.tags) metadata.tags = obj.tags;
-        if (obj.returns) metadata.returns = obj.returns;    
+        if (obj.return || obj.returns)
+          metadata.returns = [...obj.return, ...obj.returns];
+        if (obj.exceptions) metadata.exceptions = obj.exceptions;
       }
     }
     return metadata;
@@ -33,6 +34,7 @@ const getMetadataFunction = async (functions) => {
       const metadata = await getMetadataFromJSDoc(funcDet.handler);
       funcDet.description = metadata.description;
       funcDet.paramsManual = metadata.params;
+      funcDet.exceptions = metadata.exceptions;
       if (metadata.tags) {
         funcDet.additional = metadata.tags;
         tagsResult = [...tagsResult, ...new Set(metadata.tags)];
