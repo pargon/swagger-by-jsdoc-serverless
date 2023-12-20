@@ -8,7 +8,7 @@ async function eject() {
     await writeHtmlFromJson(jsonStr, process.env.SWAGGERFILEWRITETMP);
     await writeFile(jsonStr, `${process.env.SWAGGERFILEWRITETMP}/index.json`);
   } catch (error) {
-    throw new Error(error);
+    throw new Error("Run Spec again!");
   }
 }
 module.exports = { eject };
