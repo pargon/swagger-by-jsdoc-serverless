@@ -2,7 +2,6 @@ const basicInfo = require("./basicInfo");
 const servers = require("./servers");
 const components = require("./components");
 const security = require("./security");
-const tags = require("./tags");
 const login = require("./login");
 const functions = require("./functions");
 
@@ -24,7 +23,7 @@ module.exports = {
     }
   },
   ...security,
-  ...tags,
+  tags: [],
   paths: {
     ...login,
     ...functions

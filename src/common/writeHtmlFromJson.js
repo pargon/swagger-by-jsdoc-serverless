@@ -10,8 +10,8 @@ const writeHtmlFromJson = async (
   const swaggerDoc = JSON.parse(inputJson);
 
   const favIconHtml =
-    "<link rel=\"icon\" type=\"image/png\" href=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.11.0/favicon-32x32.png\" sizes=\"32x32\" />" +
-    "<link rel=\"icon\" type=\"image/png\" href=\"https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.11.0/favicon-16x16.png\" sizes=\"16x16\" />";
+    '<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.11.0/favicon-32x32.png" sizes="32x32" />' +
+    '<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.11.0/favicon-16x16.png" sizes="16x16" />';
   const customfavIcon = customfavIconP || false;
   const customeSiteTitle = customeSiteTitleP || "Swagger UI";
   const html = await fs.readFileSync(`${__dirname}/indexTemplate.html`);
@@ -38,7 +38,7 @@ const writeHtmlFromJson = async (
     .replace("<% title %>", customeSiteTitle);
 
   if (!fs.existsSync(target)) {
-    fs.mkdirSync(target);
+    fs.mkdirSync(target, { recursive: true });
   }
   await fs.writeFileSync(`${target}/index.html`, htmlWithOptions);
 };

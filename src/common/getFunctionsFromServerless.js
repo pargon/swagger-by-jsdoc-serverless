@@ -12,18 +12,20 @@ const getCustomTypes = () => {
     },
     represent(data) {
       return data.toLowerCase();
-    },
+    }
   });
 
   const customType2 = new yaml.Type("!GetAtt", {
     kind: "scalar",
     resolve(data) {
-      return typeof data === "string";    },
-    construct(data) {      return data.toUpperCase();
+      return typeof data === "string";
+    },
+    construct(data) {
+      return data.toUpperCase();
     },
     represent(data) {
       return data.toLowerCase();
-    },
+    }
   });
   return [customType1, customType2];
 };
@@ -43,15 +45,15 @@ const pushArrayFunction = (
       method,
       name: functionName,
       params,
-      handler,
-    },
+      handler
+    }
   ];
   if (index !== -1) {
     arrayFunc[index].detail.push(...functionDetail);
   } else {
     const functionDef = {
       path,
-      detail: functionDetail,
+      detail: functionDetail
     };
     arrayFunc.push(functionDef);
   }
@@ -59,22 +61,16 @@ const pushArrayFunction = (
 
 const getFunctionsFromServerless = async (serverlessFilePath) => {
   const serverlessFile = fs.readFileSync(serverlessFilePath, "utf8");
-  if (!serverlessFile)
-    throw new Error(`Error al leer serverless.yml en ${serverlessFilePath}`);
+  if (!serverlessFile) throw new Error(serverlessFilePath);
 
-  // Agregar el nuevo tipo personalizado al esquema
+  // schema custom
   const schema = yaml.DEFAULT_SCHEMA.extend(getCustomTypes());
-
-  // Convierte el contenido YAML a un objeto JavaScript utilizando el nuevo tipo personalizado
+  // yaml to json
   const serverlessConfig = yaml.load(serverlessFile, { schema });
-
-  // Define las opciones de Swagger
   const swaggerFunctions = [];
-
-  // sirve para identificar parámetros {}
+  // parm {}
   const regex = /{([^}]+)}/g;
-
-  // Recorre las funciones en el archivo serverless.yml y agrega las rutas a las opciones de Swagger
+  // functions in serverless.yml and route every one
   Object.keys(serverlessConfig.functions).forEach((functionName) => {
     const functionConfig = serverlessConfig.functions[functionName];
     const { handler } = functionConfig;
@@ -102,5 +98,5 @@ const getFunctionsFromServerless = async (serverlessFilePath) => {
 };
 
 module.exports = {
-  getFunctionsFromServerless,
+  getFunctionsFromServerless
 };

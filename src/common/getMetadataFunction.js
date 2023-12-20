@@ -15,6 +15,7 @@ async function getMetadataFromJSDoc(handler) {
         if (obj.description) metadata.description = obj.description;
         if (obj.params) metadata.params = obj.params;
         if (obj.tags) metadata.tags = obj.tags;
+        if (obj.returns) metadata.returns = obj.returns;    
       }
     }
     return metadata;
@@ -25,19 +26,23 @@ async function getMetadataFromJSDoc(handler) {
 
 const getMetadataFunction = async (functions) => {
   const funcResult = [];
+  let tagsResult = [];
   for (const func of functions) {
     const detail = [];
     for (const funcDet of func.detail) {
       const metadata = await getMetadataFromJSDoc(funcDet.handler);
       funcDet.description = metadata.description;
       funcDet.paramsManual = metadata.params;
-      if (metadata.tags) funcDet.additional = metadata.tags;
+      if (metadata.tags) {
+        funcDet.additional = metadata.tags;
+        tagsResult = [...tagsResult, ...new Set(metadata.tags)];
+      }
       detail.push(funcDet);
     }
     func.detail = detail;
     funcResult.push(func);
   }
-  return funcResult;
+  return { functions: funcResult, tags: tagsResult };
 };
 
 module.exports = {

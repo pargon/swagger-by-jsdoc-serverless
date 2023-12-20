@@ -1,11 +1,13 @@
 const fs = require("fs").promises;
-const { getTagsInFile } = require("./getTagsInFile");
+const { copyDefaultSpec } = require("./copyDefaultSpec");
 const { getFunctionsFromServerless } = require("./getFunctionsFromServerless");
 const { getMetadataFunction } = require("./getMetadataFunction");
 const { getJsonFunction } = require("./getJsonFunction");
 const { writeFilesFunctions } = require("./writeFilesFunctions");
 const { writeHtmlFromJson } = require("./writeHtmlFromJson");
 const { writeIndex } = require("./writeIndex");
+const { updateGitignore } = require("./updateGitignore");
+const { updatePackJson } = require("./updatePackJson");
 
 const writeFile = async (jsonStr, path) => {
   await fs.writeFile(path, jsonStr, "utf8", (err) => {
@@ -14,12 +16,14 @@ const writeFile = async (jsonStr, path) => {
 };
 
 module.exports = {
+  copyDefaultSpec,
   getFunctionsFromServerless,
   getMetadataFunction,
   getJsonFunction,
-  getTagsInFile,
   writeFilesFunctions,
   writeHtmlFromJson,
   writeIndex,
+  updateGitignore,
+  updatePackJson,
   writeFile
 };
