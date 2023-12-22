@@ -11,14 +11,14 @@ Run script
 ```sh
 node -r swagger-by-jsdoc-serverless/scripts/init.js
 ```
-After that, update `pachage.json/"scripts"` manually or run init.js
+Or manually edit `pachage.json"`:
 ```json
 "scripts": {
   "swagger-spec": "node -r swagger-by-jsdoc-serverless/scripts/spec.js > NUL",
   "swagger-html": "node -r swagger-by-jsdoc-serverless/scripts/html.js > NUL"
 }
 ```  
-Update `.gitignore` manually or run init.js
+And edit `.gitignore`:
 ```sh
 swagger/*/*
 !swagger/components/schemas/
