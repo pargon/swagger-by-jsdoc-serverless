@@ -46,3 +46,14 @@ Run script
 npm run swagger-html
 ```
 and you can find `tmp\index.html`
+### Schemas
+
+The **schemas** mentioned in this project refer to the JSON objects used in both the **request body** and the **response body**. These schemas define the structure and validation of the data sent or received in the API operations.
+
+If you need help creating a schema, you can refer to the [json-to-schema-swagger](https://www.npmjs.com/package/json-to-schema-swagger) package, where you will find a detailed guide on how to generate schemas compatible with Swagger.
+
+For example:
+- **Request Body Schema**: Defines the data that the client must send to the server.
+- **Response Body Schema**: Defines the data that the server returns to the client.
+
+Make sure to properly document these schemas in your Swagger definitions to ensure a well-structured and easy-to-understand API.
