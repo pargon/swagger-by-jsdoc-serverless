@@ -1,6 +1,6 @@
 {
   "name": "swagger-by-jsdoc-serverless",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "scripts/init.js",
   "scripts": {
